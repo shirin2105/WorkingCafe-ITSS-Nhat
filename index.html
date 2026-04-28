@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Cafe - Signup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="signup-container">
+        <!-- Left Side: Form Area -->
+        <div class="form-side">
+            <form id="signupForm" class="signup-form">
+                
+                <div class="input-group">
+                    <input type="text" id="emailOrUsername" placeholder="メール/ユーザー名" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="パスワード" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="tel" id="phoneNumber" placeholder="電話番号" required>
+                </div>
+
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="role" value="user" checked>
+                        <span class="custom-radio"></span>
+                        ユーザーとして登録
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="role" value="owner">
+                        <span class="custom-radio"></span>
+                        カフェオーナーとして登録
+                    </label>
+                </div>
+
+                <!-- Conditional Fields for Cafe Owner -->
+                <div id="ownerFields" class="owner-fields hidden">
+                    <div class="input-group">
+                        <input type="text" id="cafeName" placeholder="カフェ名">
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" id="address" placeholder="住所">
+                    </div>
+
+                    <div class="time-group">
+                        <label>営業時間</label>
+                        <div class="time-inputs">
+                            <input type="time" id="startTime" value="00:00" class="time-input">
+                            <span class="time-separator">-</span>
+                            <input type="time" id="endTime" value="23:59" class="time-input">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">登録する</button>
+
+                <div class="login-link-container">
+                    <span>既にアカウントをお持ちですか？</span>
+                    <a href="signin.html" class="login-link">ログイン</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Right Side: Image Area -->
+        <div class="image-side">
+            <div class="logo-card">
+                <img src="WorkingCafe-Logo.png" alt="Working Cafe Logo" class="logo-image">
+                <h1 class="logo-text">WORKING CAFE</h1>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
