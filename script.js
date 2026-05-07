@@ -67,4 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('ログインしました！ (Login Complete - Simulation)');
         });
     }
+
+    // Notification Dropdown Logic
+    const notificationBtn = document.getElementById('notificationBtn');
+    const notificationDropdown = document.getElementById('notificationDropdown');
+
+    if (notificationBtn && notificationDropdown) {
+        notificationBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent click from bubbling to document
+            notificationDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!notificationDropdown.classList.contains('hidden') && !notificationDropdown.contains(e.target) && e.target !== notificationBtn) {
+                notificationDropdown.classList.add('hidden');
+            }
+        });
+    }
 });

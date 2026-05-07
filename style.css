@@ -272,3 +272,485 @@ body {
         padding: 40px 20px;
     }
 }
+
+/* =========================================
+   Detail Page Styles
+   ========================================= */
+
+.detail-body {
+    background-color: #f5eedc;
+    height: auto;
+    display: block;
+    padding-bottom: 50px;
+}
+
+/* Header */
+.detail-header {
+    background-color: #c09d75;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.header-logo-img {
+    height: 30px;
+}
+
+.header-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 24px;
+}
+
+.detail-main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* Edit Icon General */
+.edit-icon, .title-edit-icon, .time-edit-icon {
+    color: #333;
+    cursor: pointer;
+}
+
+/* Gallery Section */
+.gallery-section {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 5px;
+    height: 250px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.large-photo {
+    position: relative;
+}
+
+.more-photos-text {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.horizontal-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.horizontal-photos img {
+    height: calc(50% - 2.5px);
+}
+
+.gallery-edit {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-size: 18px;
+}
+
+/* Info Header */
+.info-header {
+    margin-bottom: 30px;
+}
+
+.info-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cafe-name {
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-edit-icon {
+    font-size: 18px;
+}
+
+.cafe-rating {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.cafe-rating i {
+    color: #f1c40f;
+}
+
+.cafe-address {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.cafe-time {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+/* Body Grid (Bestseller & Criteria) */
+.detail-body-grid {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Bestseller */
+.bestseller-section {
+    flex: 2;
+}
+
+.bestseller-box {
+    background-color: #eedfcd;
+    border-radius: 15px;
+    padding: 15px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.drink-list {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.drink-img {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.view-menu-text {
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Criteria */
+.criteria-section {
+    flex: 1;
+}
+
+.criteria-box {
+    background-color: #ffd17a;
+    padding: 15px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    height: calc(100% - 30px);
+}
+
+.criteria-list {
+    list-style: none;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.box-edit {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 16px;
+}
+
+/* Review Section */
+.review-section {
+    margin-top: 30px;
+}
+
+.review-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.review-title span {
+    border-bottom: 2px solid #333;
+    padding-bottom: 2px;
+}
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.review-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.review-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.reviewer-icon {
+    font-size: 24px;
+}
+
+.review-stars i {
+    color: #f1c40f;
+    font-size: 14px;
+}
+
+.review-text {
+    font-size: 15px;
+    margin-left: 34px;
+}
+
+.more-reviews {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Floating Action Button */
+.fab-calendar {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.fab-calendar:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .detail-body-grid {
+        flex-direction: column;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .gallery-item.vertical-photo, 
+    .gallery-item.horizontal-photos {
+        display: none;
+    }
+}
+
+/* Notification Dropdown */
+.notification-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-icon {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 35px;
+    right: -10px;
+    width: 250px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 15px;
+    z-index: 100;
+    font-size: 14px;
+    color: #333;
+}
+
+.dropdown-menu.hidden {
+    display: none;
+}
+
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    border-width: 0 8px 8px 8px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}
+
+    .dropdown-empty {
+        text-align: center;
+        color: #888;
+        margin: 10px 0;
+    }
+    
+    /* =========================================
+       Map Page Styles
+       ========================================= */
+    .map-body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: block; /* Override global flex centering */
+    }
+    
+    .map-main-layout {
+        display: flex;
+        height: calc(100vh - 50px); /* Assuming header is ~50px */
+        width: 100vw;
+    }
+    
+    /* Sidebar */
+    .map-sidebar {
+        width: 35%;
+        min-width: 300px;
+        max-width: 450px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 10;
+        overflow-y: auto;
+    }
+    
+    .sidebar-img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    
+    .sidebar-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    
+    .sidebar-info-row {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 0;
+        border-bottom: 1px solid #ccc;
+        font-size: 18px;
+        color: #333;
+    }
+    
+    .sidebar-info-row i {
+        font-size: 20px;
+        width: 25px; /* Fixed width for icon alignment */
+        text-align: center;
+    }
+    
+    .cafe-name-row {
+        padding-top: 0;
+    }
+    
+    .sidebar-cafe-name {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 0;
+        width: 100%;
+    }
+    
+    .sidebar-rating-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        margin-top: auto; /* Push to bottom if content is short */
+    }
+    
+    .rating-box {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .rating-box i {
+        color: #f1c40f;
+    }
+    
+    .sidebar-edit {
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+    /* Map Area */
+    .map-area {
+        flex: 1;
+        height: 100%;
+    }
+    
+    @media (max-width: 768px) {
+        .map-main-layout {
+            flex-direction: column;
+        }
+        
+        .map-sidebar {
+            width: 100%;
+            max-width: none;
+            height: auto;
+            flex: none; /* Let it size to content */
+        }
+    
+        .map-area {
+            height: 400px; /* Give fixed height on mobile */
+            flex: none;
+        }
+    }
