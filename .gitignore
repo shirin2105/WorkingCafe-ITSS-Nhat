@@ -1,1 +1,8 @@
 *.xlsx
+supabase.exe
+supabase.tar.gz
+supabase/
+excel_output.txt
+signup_login.txt
+database_structure.md
+schema.sql

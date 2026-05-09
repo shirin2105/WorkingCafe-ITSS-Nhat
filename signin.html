@@ -20,11 +20,11 @@
                     <input type="password" id="password" placeholder="パスワード" required>
                 </div>
 
-                <button type="submit" class="submit-btn">ログイン</button>
+                <button type="submit" class="submit-btn" id="signinSubmitBtn">ログイン</button>
 
                 <div class="login-link-container">
-                    <span>アカウントをお持ちでない方？</span>
-                    <a href="index.html" class="login-link">登録</a>
+                    <span id="signinHint">アカウントをお持ちでない方？</span>
+                    <a href="signup.html" class="login-link" id="signinLink">登録</a>
                 </div>
             </form>
         </div>
@@ -38,6 +38,7 @@
         </div>
     </div>
 
+    <script src="api.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

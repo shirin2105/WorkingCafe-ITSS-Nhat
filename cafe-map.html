@@ -7,13 +7,14 @@
     <title>Working Cafe - Map</title>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="map-body">
     <!-- Header Area (Reused) -->
     <header class="detail-header">
-        <div class="header-logo">
+        <div class="header-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
             <img src="WorkingCafe-Logo.png" alt="Logo" class="header-logo-img">
             <span>WORKING CAFE</span>
         </div>
@@ -24,7 +25,7 @@
                     <p class="dropdown-empty">通知はありません</p>
                 </div>
             </div>
-            <i class="fa-regular fa-circle-user"></i>
+            <i class="fa-regular fa-circle-user" id="profileBtn"></i>
         </div>
     </header>
 
@@ -33,44 +34,48 @@
         <!-- Sidebar -->
         <aside class="map-sidebar">
             <img src="https://placehold.co/400x300/333/fff?text=Placeholder:\nCafe+Interior" alt="Cafe Image"
-                class="sidebar-img">
+                class="sidebar-img" id="mapCafeImage">
 
             <div class="sidebar-content">
                 <div class="sidebar-info-row cafe-name-row">
-                    <h1 class="sidebar-cafe-name">Cafe ABC</h1>
+                    <h1 class="sidebar-cafe-name" id="mapCafeName">Cafe ABC</h1>
                 </div>
 
                 <div class="sidebar-info-row">
                     <i class="fa-solid fa-location-dot"></i>
-                    <span>Số 1, Đại La, Hà Nội</span>
+                    <span id="mapCafeAddress">Số 1, Đại La, Hà Nội</span>
                 </div>
 
                 <div class="sidebar-info-row">
                     <i class="fa-regular fa-clock"></i>
-                    <span>9h - 17h</span>
+                    <span id="mapCafeTime">9h - 17h</span>
                 </div>
 
                 <div class="sidebar-rating-row">
-                    <div class="rating-box">
+                    <div class="rating-box" id="mapCafeRating">
                         <i class="fa-solid fa-star"></i> 4.6/5
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square edit-icon sidebar-edit"></i>
+                    <i class="fa-solid fa-pen-to-square edit-icon sidebar-edit" id="mapCafeEdit"></i>
                 </div>
             </div>
         </aside>
 
         <!-- Map Area -->
         <div class="map-area">
-            <!-- Iframe to Đại La, Hà Nội -->
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.7709848507856!2d105.84093951540201!3d21.00181519407303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac71295b9c0f%3A0xc665181b8529cb8c!2zMSBQLiDEkOG6oWkgTGEsIFRydW5nIExp4buHdCwgSGFpIELDoCBUcsawbmcsIEjDoCBO4buZaSwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+            <div id="mapFrame" class="map-frame"></div>
         </div>
     </main>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="api.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initCafeMapPage === 'function') {
+                initCafeMapPage();
+            }
+        });
+    </script>
 </body>
 
 </html>

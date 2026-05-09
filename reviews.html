@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Cafe - Reviews</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="reviews-body">
+    <header class="detail-header">
+        <div class="header-logo" onclick="window.location.href='index.html'">
+            <img src="WorkingCafe-Logo.png" alt="Logo" class="header-logo-img">
+            <span>WORKING CAFE</span>
+        </div>
+        <div class="header-icons">
+            <div class="notification-wrapper">
+                <i class="fa-regular fa-bell notification-icon" id="notificationBtn"></i>
+                <div class="dropdown-menu hidden" id="notificationDropdown">
+                    <p class="dropdown-empty">通知はありません</p>
+                </div>
+            </div>
+            <i class="fa-regular fa-circle-user" id="profileBtn"></i>
+        </div>
+    </header>
+
+    <main class="reviews-main">
+        <div class="reviews-layout">
+            <section class="reviews-summary">
+                <h2 class="reviews-heading" id="reviewsSummaryTitle">カスタマー評価</h2>
+                <div class="reviews-summary-row">
+                    <div class="rating-bars" id="ratingBars"></div>
+                    <div class="average-badge">
+                        <i class="fa-solid fa-star"></i>
+                        <span id="averageRating">0.0</span>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="reviews-hero">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Cafe workspace">
+            </aside>
+
+            <section class="reviews-voice">
+                <h3 class="reviews-subtitle" id="reviewsVoiceTitle">お客様の声</h3>
+                <div class="reviews-input">
+                    <div class="profile-summary">
+                        <i class="fa-regular fa-circle-user"></i>
+                        <span id="currentUserName">User</span>
+                    </div>
+                    <div class="rating-selector" id="reviewRatingSelector"></div>
+                    <textarea id="reviewContent" rows="3" placeholder="レビューを入力..."></textarea>
+                    <div class="review-actions">
+                        <button class="submit-btn small" id="submitReview">レビューを投稿する</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reviews-list" id="reviewsList"></section>
+        </div>
+    </main>
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initReviewsPage === 'function') {
+                initReviewsPage();
+            }
+        });
+    </script>
+</body>
+</html>

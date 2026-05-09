@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Cafe - Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="settings-body">
+    <header class="detail-header">
+        <div class="header-logo" onclick="window.location.href='index.html'">
+            <img src="WorkingCafe-Logo.png" alt="Logo" class="header-logo-img">
+            <span>WORKING CAFE</span>
+        </div>
+        <div class="header-icons">
+            <div class="notification-wrapper">
+                <button class="header-btn" id="notificationBtn" title="通知">
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+                <div class="dropdown-menu hidden" id="notificationDropdown">
+                    <p class="dropdown-empty">通知はありません</p>
+                </div>
+            </div>
+            <div class="profile-avatar" id="profileBtn" title="Hồ sơ">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="settings-main">
+        <div class="settings-layout">
+            <section class="settings-panel" id="settingsPanel"></section>
+            <aside class="settings-hero">
+                <div class="settings-hero-card">
+                    <img src="WorkingCafe-Logo.png" alt="Working Cafe" class="settings-hero-logo">
+                    <div class="settings-hero-text">WORKING CAFE</div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initSettingsPage === 'function') {
+                initSettingsPage();
+            }
+        });
+    </script>
+</body>
+</html>

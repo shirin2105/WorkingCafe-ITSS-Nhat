@@ -1,7 +1,7 @@
 import * as repo from './cafes.repository.js';
 
-export const getAll = async() => {
-    const { data, error } = await repo.findAll();
+export const getAll = async (query) => {
+    const { data, error } = await repo.findAll(query);
     if (error) throw error;
     return data;
 };

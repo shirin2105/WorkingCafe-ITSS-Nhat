@@ -2,8 +2,15 @@ import { supabase } from '../../config/db.js';
 
 const TABLE = "reviews";
 
-export const findAll = async () => {
-    return await supabase.from(TABLE).select();
+export const findAll = async (cafeId, userId) => {
+    let query = supabase.from(TABLE).select('*, accounts(username)');
+    if (cafeId) {
+        query = query.eq("cafe_id", Number(cafeId));
+    }
+    if (userId) {
+        query = query.eq("user_id", Number(userId));
+    }
+    return await query.order('created_at', { ascending: false });
 };
 
 export const findById = async (id) => {

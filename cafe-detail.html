@@ -11,7 +11,7 @@
 <body class="detail-body">
     <!-- Header Area -->
     <header class="detail-header">
-        <div class="header-logo">
+        <div class="header-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
             <img src="WorkingCafe-Logo.png" alt="Logo" class="header-logo-img">
             <span>WORKING CAFE</span>
         </div>
@@ -22,7 +22,7 @@
                     <p class="dropdown-empty">通知はありません</p>
                 </div>
             </div>
-            <i class="fa-regular fa-circle-user"></i>
+            <i class="fa-regular fa-circle-user" id="profileBtn"></i>
         </div>
     </header>
 
@@ -33,8 +33,8 @@
             <div class="gallery-grid">
                 <!-- Large Photo -->
                 <div class="gallery-item large-photo">
-                    <img src="https://placehold.co/600x400/333/fff?text=Placeholder:\nCafe+Interior" alt="Cafe Interior">
-                    <div class="more-photos-text">その他の写真を見る</div>
+                    <img src="https://placehold.co/600x400/333/fff?text=Placeholder:\nCafe+Interior" alt="Cafe Interior" id="detailHeroImage">
+                    <div class="more-photos-text" id="detailMorePhotos">その他の写真を見る</div>
                 </div>
                 <!-- Vertical Photo -->
                 <div class="gallery-item vertical-photo">
@@ -46,21 +46,27 @@
                     <img src="https://placehold.co/300x195/999/fff?text=Placeholder:\nDrink+3" alt="Coffee Art">
                 </div>
             </div>
-            <i class="fa-solid fa-arrow-up-right-from-square edit-icon gallery-edit"></i>
+            <i class="fa-solid fa-pen-to-square edit-icon gallery-edit"></i>
         </div>
 
         <!-- Info Header -->
         <div class="info-header">
             <div class="info-title-row">
-                <h1 class="cafe-name">ABCカフェ <i class="fa-solid fa-arrow-up-right-from-square title-edit-icon"></i></h1>
-                <div class="cafe-rating">
-                    <i class="fa-solid fa-star"></i> 4.6/5
+                <h1 class="cafe-name" id="detailCafeName">ABCカフェ <i class="fa-solid fa-pen-to-square title-edit-icon"></i></h1>
+                <div class="detail-title-actions">
+                    <div class="cafe-rating" id="detailCafeRating">
+                        <i class="fa-solid fa-star"></i> 4.6/5
+                    </div>
+                    <button class="favorite-btn" id="detailFavoriteBtn" aria-label="Favorite">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
                 </div>
             </div>
-            <p class="cafe-address"><strong>アドレス:</strong> 106 Pham Ngoc Thach Street, ハノイ, ベトナム</p>
-            <div class="cafe-time">
-                <i class="fa-regular fa-clock"></i> 8:00 - 19:00 
-                <i class="fa-solid fa-arrow-up-right-from-square time-edit-icon"></i>
+            <p class="cafe-address" id="detailCafeAddress"><strong>アドレス:</strong> 106 Pham Ngoc Thach Street, ハノイ, ベトナム</p>
+            <div class="cafe-time" id="detailCafeTime">
+                <i class="fa-regular fa-clock"></i>
+                <span id="detailCafeTimeText">8:00 - 19:00</span>
+                <i class="fa-solid fa-pen-to-square time-edit-icon"></i>
             </div>
         </div>
 
@@ -68,86 +74,50 @@
         <div class="detail-body-grid">
             <!-- Bestseller Section -->
             <div class="bestseller-section">
-                <h2 class="section-title">ベストセラー</h2>
+                <h2 class="section-title" id="detailBestsellerTitle">ベストセラー</h2>
                 <div class="bestseller-box">
-                    <div class="drink-list">
-                        <img src="https://placehold.co/100x120/f39c12/fff?text=Placeholder:\nJuice" alt="Juice" class="drink-img">
-                        <img src="https://placehold.co/100x120/8e44ad/fff?text=Placeholder:\nLatte" alt="Latte" class="drink-img">
-                        <img src="https://placehold.co/100x120/27ae60/fff?text=Placeholder:\nMatcha" alt="Matcha" class="drink-img">
+                    <div class="drink-list" id="detailBestsellers">
                     </div>
-                    <div class="view-menu-text">メニュー全体を見る</div>
-                    <i class="fa-solid fa-arrow-up-right-from-square edit-icon box-edit"></i>
+                    <div class="view-menu-text" id="detailMenuLink">メニュー全体を見る</div>
+                    <i class="fa-solid fa-pen-to-square edit-icon box-edit"></i>
                 </div>
             </div>
 
             <!-- Criteria Section -->
             <div class="criteria-section">
-                <h2 class="section-title">クライテリア</h2>
+                <h2 class="section-title" id="detailCriteriaTitle">クライテリア</h2>
                 <div class="criteria-box">
-                    <ul class="criteria-list">
-                        <li>デスクあり</li>
-                        <li>コンセントあり</li>
-                        <li>Wi-Fiあり</li>
-                        <li>エアコンあり</li>
+                    <ul class="criteria-list" id="detailCriteria">
                     </ul>
-                    <i class="fa-solid fa-arrow-up-right-from-square edit-icon box-edit"></i>
+                    <i class="fa-solid fa-pen-to-square edit-icon box-edit"></i>
                 </div>
             </div>
         </div>
 
         <!-- Review Section -->
         <div class="review-section">
-            <h2 class="review-title"><span>評価</span></h2>
+            <h2 class="review-title"><span id="detailReviewTitle">評価</span></h2>
             
-            <div class="review-list">
-                <!-- Review Card 1 -->
-                <div class="review-card">
-                    <div class="review-card-header">
-                        <div class="reviewer-info">
-                            <i class="fa-regular fa-circle-user reviewer-icon"></i>
-                            <span class="reviewer-name">田中</span>
-                        </div>
-                        <div class="review-stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star" style="color: #ccc;"></i>
-                        </div>
-                    </div>
-                    <p class="review-text">飲み物は美味しい、快適な空気。</p>
-                </div>
-
-                <!-- Review Card 2 -->
-                <div class="review-card">
-                    <div class="review-card-header">
-                        <div class="reviewer-info">
-                            <i class="fa-regular fa-circle-user reviewer-icon"></i>
-                            <span class="reviewer-name">田中</span>
-                        </div>
-                        <div class="review-stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star" style="color: #ccc;"></i>
-                        </div>
-                    </div>
-                    <p class="review-text">飲み物は美味しい、快適な空気。</p>
-                </div>
+            <div class="review-list" id="detailReviewList">
             </div>
 
-            <div class="more-reviews">
-                その他の評価を見る
-            </div>
+            <div class="more-reviews" id="detailMoreReviews">その他の評価を見る</div>
         </div>
     </main>
 
     <!-- Floating Action Button -->
-    <button class="fab-calendar">
+    <button class="fab-calendar" id="detailBookingBtn">
         <i class="fa-regular fa-calendar-days"></i>
     </button>
 
+    <script src="api.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initCafeDetailPage === 'function') {
+                initCafeDetailPage();
+            }
+        });
+    </script>
 </body>
 </html>

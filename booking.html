@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Cafe - Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="booking-body">
+    <header class="detail-header">
+        <div class="header-logo" onclick="window.location.href='index.html'">
+            <img src="WorkingCafe-Logo.png" alt="Logo" class="header-logo-img">
+            <span>WORKING CAFE</span>
+        </div>
+        <div class="header-icons">
+            <div class="notification-wrapper">
+                <i class="fa-regular fa-bell notification-icon" id="notificationBtn"></i>
+                <div class="dropdown-menu hidden" id="notificationDropdown">
+                    <p class="dropdown-empty">通知はありません</p>
+                </div>
+            </div>
+            <i class="fa-regular fa-circle-user" id="profileBtn"></i>
+        </div>
+    </header>
+
+    <main class="booking-main">
+        <div class="booking-layout">
+            <section class="booking-panel">
+                <h2 class="booking-title" id="bookingTitle">オンライン予約</h2>
+                <form class="booking-form" id="bookingForm">
+                    <div class="booking-fields">
+                        <div class="booking-field">
+                            <label class="booking-label" id="bookingDateLabel">予約希望日</label>
+                            <input type="date" id="bookingDate" class="booking-input" required>
+                        </div>
+                        <div class="booking-field">
+                            <label class="booking-label" id="bookingTimeLabel">来店時間</label>
+                            <select id="bookingTime" class="booking-input" required></select>
+                        </div>
+                        <div class="booking-field">
+                            <label class="booking-label" id="bookingPeopleLabel">人数</label>
+                            <input type="number" id="bookingPeople" class="booking-input" min="1" max="10" required>
+                        </div>
+                    </div>
+
+                    <div class="booking-features">
+                        <div class="booking-label" id="bookingFeaturesTitle">設備・サービス</div>
+                        <div class="feature-checkboxes">
+                            <label class="feature-item">
+                                <i class="fa-solid fa-smoking"></i>
+                                <span id="featureSmokingLabel">喫煙席</span>
+                                <input type="checkbox" value="Smoking">
+                            </label>
+                            <label class="feature-item">
+                                <i class="fa-solid fa-plug"></i>
+                                <span id="featureOutletLabel">コンセント</span>
+                                <input type="checkbox" value="Outlet">
+                            </label>
+                            <label class="feature-item">
+                                <i class="fa-solid fa-wind"></i>
+                                <span id="featureAirLabel">空調</span>
+                                <input type="checkbox" value="Air">
+                            </label>
+                            <label class="feature-item">
+                                <i class="fa-solid fa-wifi"></i>
+                                <span id="featureWifiLabel">Wi-Fi</span>
+                                <input type="checkbox" value="Wifi">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="booking-note">
+                        <label class="booking-label" id="bookingNoteLabel">その他ご要望</label>
+                        <textarea id="bookingNote" rows="3" class="booking-textarea"></textarea>
+                    </div>
+
+                    <button class="booking-submit" type="submit" id="bookingSubmitBtn">送信</button>
+                </form>
+            </section>
+
+            <aside class="booking-hero">
+                <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=900&q=80" alt="Cafe interior">
+            </aside>
+        </div>
+    </main>
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initBookingPage === 'function') {
+                initBookingPage();
+            }
+        });
+    </script>
+</body>
+</html>

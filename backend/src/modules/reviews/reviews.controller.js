@@ -2,7 +2,7 @@ import * as service from './reviews.service.js';
 
 export const getAll = async (req, res) => {
     try {
-        const data = await service.getAll();
+    const data = await service.getAll(req.query);
         res.json(data);
     } catch (err) {
         res.status(500).json(err);

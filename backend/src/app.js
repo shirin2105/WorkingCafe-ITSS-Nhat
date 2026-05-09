@@ -1,25 +1,42 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
-import accountRoutes from './modules/accounts/accounts.route.js';
-import bookingRoutes from './modules/bookings/bookings.route.js';
-import cafeRoutes from './modules/cafes/cafes.route.js';
-import itemRoutes from './modules/items/items.route.js';
-import reviewRoutes from './modules/reviews/reviews.route.js';
+import routes from './routes/index.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+const apiResponseWrapper = (req, res, next) => {
+    const originalJson = res.json.bind(res);
+    res.json = (payload) => {
+        const isError = res.statusCode >= 400;
+        if (isError) {
+            const message = payload?.message || payload?.error || 'Lỗi hệ thống';
+            return originalJson({
+                success: false,
+                error: message,
+                details: payload
+            });
+        }
+        return originalJson({ success: true, data: payload });
+    };
+    next();
+};
+
+// Serve static frontend files from project root
+app.use(express.static(path.join(__dirname, '../../')));
+
 app.get('/', (_, res) => 
     res.json({ info: "Welcome to WorkingCafe" })
 );
 
-app.use('/accounts', accountRoutes);
-app.use('/bookings', bookingRoutes);
-app.use('/cafes', cafeRoutes);
-app.use('/items', itemRoutes);
-app.use('/reviews', reviewRoutes);
+app.use('/api', apiResponseWrapper, routes);
 
 export default app;

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Cafe - Home</title>
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+    
+    <!-- Header Section -->
+    <header class="detail-header">
+        <div class="header-logo" onclick="window.location.reload();" style="cursor: pointer;">
+            <img src="WorkingCafe-Logo.png" alt="Logo" class="header-logo-img">
+            <span>WORKING CAFE</span>
+        </div>
+        
+        <div class="header-center">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="検索...">
+            </div>
+        </div>
+        
+        <div class="header-icons" id="headerAuthIcons">
+            <!-- Icons injected via JavaScript based on Auth state -->
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="home-main">
+        <div class="recommended-section">
+            <h2 class="section-title" id="homeRecommendedTitle">おすすめ店舗:</h2>
+            <div class="cafe-grid" id="cafeGrid">
+                <!-- Cafe cards injected via JavaScript -->
+                <div class="loading-text">Loading cafes...</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // HomePage specific logic
+        document.addEventListener('DOMContentLoaded', () => {
+            if(typeof initHomePage === 'function') {
+                initHomePage();
+            }
+        });
+    </script>
+</body>
+</html>

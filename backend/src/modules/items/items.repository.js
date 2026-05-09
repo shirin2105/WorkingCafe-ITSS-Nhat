@@ -2,8 +2,12 @@ import { supabase } from '../../config/db.js';
 
 const TABLE = "menu_items";
 
-export const findAll = async () => {
-    return await supabase.from(TABLE).select();
+export const findAll = async (cafeId) => {
+    let query = supabase.from(TABLE).select();
+    if (cafeId) {
+        query = query.eq("cafe_id", Number(cafeId));
+    }
+    return await query;
 };
 
 export const findById = async (id) => {

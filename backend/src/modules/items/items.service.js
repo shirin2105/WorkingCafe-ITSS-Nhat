@@ -1,7 +1,8 @@
 import * as repo from './items.repository.js';
 
-export const getAll = async() => {
-    const { data, error } = await repo.findAll();
+export const getAll = async (query) => {
+    const { cafe_id: cafeId } = query || {};
+    const { data, error } = await repo.findAll(cafeId);
     if (error) throw error;
     return data;
 };
@@ -13,7 +14,9 @@ export const getById = async(id) => {
 };
 
 export const create = async(payload) => {
-    const { data, error} = await repo.create(payload);
+    const cleanPayload = { ...payload };
+    delete cleanPayload.id;
+    const { data, error} = await repo.create(cleanPayload);
     if (error) throw error;
     return data;
 };

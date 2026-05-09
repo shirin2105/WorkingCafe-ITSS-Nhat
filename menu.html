@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Cafe - Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="menu-body">
+    <header class="detail-header">
+        <div class="header-logo" onclick="window.location.href='index.html'">
+            <img src="WorkingCafe-Logo.png" alt="Logo" class="header-logo-img">
+            <span>WORKING CAFE</span>
+        </div>
+        <div class="header-icons">
+            <div class="notification-wrapper">
+                <i class="fa-regular fa-bell notification-icon" id="notificationBtn"></i>
+                <div class="dropdown-menu hidden" id="notificationDropdown">
+                    <p class="dropdown-empty">通知はありません</p>
+                </div>
+            </div>
+            <i class="fa-regular fa-circle-user" id="profileBtn"></i>
+        </div>
+    </header>
+
+    <main class="menu-main">
+        <section class="menu-list" id="menuList">
+            <div class="menu-toolbar">
+                <button class="menu-btn" id="menuAddBtn">追加</button>
+            </div>
+        </section>
+        <section class="menu-detail" id="menuDetail">
+            <h2 class="menu-detail-title" id="menuDetailTitle">詳細</h2>
+            <div class="menu-detail-card">
+                <img src="cafe.png" alt="Menu" id="detailImage">
+                <div class="menu-detail-info">
+                    <h3 id="detailName">---</h3>
+                    <p id="detailDescription">---</p>
+                    <p class="menu-price" id="detailPrice">---</p>
+                    <div class="menu-rating" id="detailRating"></div>
+                    <button class="submit-btn small" id="submitMenuReview">レビュー送信</button>
+                    <div class="menu-review-panel">
+                        <h4 class="menu-review-title" id="menuReviewTitle">レビュー</h4>
+                        <div class="menu-review-list" id="menuReviewList"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initMenuPage === 'function') {
+                initMenuPage();
+            }
+        });
+    </script>
+</body>
+</html>
