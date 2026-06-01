@@ -50,11 +50,11 @@ const apiClient = {
     post(endpoint, body) {
         return this.request(endpoint, 'POST', body);
     },
-    
+
     put(endpoint, body) {
         return this.request(endpoint, 'PUT', body);
     },
-    
+
     delete(endpoint) {
         return this.request(endpoint, 'DELETE');
     }

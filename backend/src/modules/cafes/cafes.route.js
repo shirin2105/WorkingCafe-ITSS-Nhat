@@ -5,8 +5,10 @@ import { authenticate, requireCafeOwner, requireOwnerRole } from '../../middlewa
 const route = express.Router();
 
 route.get('/', controller.getAll);
+route.get('/:id/images', controller.getImages);
 route.get('/:id', controller.getById);
 route.post('/', authenticate, requireOwnerRole, controller.create);
+route.put('/:id/images', authenticate, requireCafeOwner, controller.replaceImages);
 route.put('/:id', authenticate, requireCafeOwner, controller.update);
 route.delete('/:id', authenticate, requireCafeOwner, controller.remove);
 

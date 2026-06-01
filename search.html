@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="search-body">
-    <header class="search-header">
-        <div class="header-logo" onclick="window.location.href='index.html'">
+    <header class="detail-header search-header">
+        <div class="header-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
             <img src="WorkingCafe-Logo.png" alt="Logo" class="header-logo-img">
             <span>WORKING CAFE</span>
         </div>
@@ -31,35 +31,45 @@
     </header>
 
     <main class="search-main">
-        <section class="search-filter-panel">
-            <div class="filter-icon-row">
-                <span class="filter-icon"><i class="fa-solid fa-plus"></i></span>
-                <span class="filter-icon"><i class="fa-solid fa-plus"></i></span>
-                <span class="filter-icon"><i class="fa-solid fa-plus"></i></span>
-                <span class="filter-icon"><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="filter-pill-row">
-                <button class="filter-btn" id="filterLocationBtn">地点</button>
-                <button class="filter-btn" id="filterFeatureBtn">特徴</button>
-                <button class="filter-btn" id="filterTimeBtn">時間</button>
-            </div>
-
-            <div class="filter-popovers">
-                <div class="filter-group" id="filterLocationGroup">
-                    <label class="filter-label">地点</label>
-                    <select id="filterLocation" multiple></select>
+        <section class="search-filters">
+            <div class="search-filter-bar">
+                <div class="filter-dropdown-wrap">
+                    <button type="button" class="filter-btn" id="filterLocationBtn">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span class="filter-btn-text">地点</span>
+                        <i class="fa-solid fa-chevron-down filter-btn-caret"></i>
+                    </button>
+                    <div class="filter-group" id="filterLocationGroup">
+                        <label class="filter-label">地点</label>
+                        <select id="filterLocation" multiple></select>
+                    </div>
                 </div>
 
-                <div class="filter-group" id="filterFeatureGroup">
-                    <label class="filter-label">特徴</label>
-                    <div id="featureList" class="filter-tags"></div>
+                <div class="filter-dropdown-wrap">
+                    <button type="button" class="filter-btn" id="filterFeatureBtn">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span class="filter-btn-text">特徴</span>
+                        <i class="fa-solid fa-chevron-down filter-btn-caret"></i>
+                    </button>
+                    <div class="filter-group" id="filterFeatureGroup">
+                        <label class="filter-label">特徴</label>
+                        <div id="featureList" class="filter-tags"></div>
+                    </div>
                 </div>
 
-                <div class="filter-group" id="filterTimeGroup">
-                    <label class="filter-label">時間</label>
-                    <select id="filterTime"></select>
+                <div class="filter-dropdown-wrap">
+                    <button type="button" class="filter-btn" id="filterTimeBtn">
+                        <i class="fa-regular fa-clock"></i>
+                        <span class="filter-btn-text">時間</span>
+                        <i class="fa-solid fa-chevron-down filter-btn-caret"></i>
+                    </button>
+                    <div class="filter-group" id="filterTimeGroup">
+                        <label class="filter-label">時間</label>
+                        <select id="filterTime"></select>
+                    </div>
                 </div>
             </div>
+            <div class="search-tags" id="activeTags"></div>
         </section>
 
         <section class="search-results-panel">
@@ -69,17 +79,16 @@
                     <span id="resultCount" class="result-count">0</span>
                     <span id="suggestUnit">店</span>
                 </div>
+                <div class="search-pagination">
+                    <button type="button" class="pager-btn" id="prevPage" aria-label="Previous">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="pager-btn" id="nextPage" aria-label="Next">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
-            <div class="search-tags" id="activeTags"></div>
-            <div class="search-carousel">
-                <button class="pager-btn circle" id="prevPage" aria-label="Previous">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <div class="cafe-grid search-grid" id="searchResults"></div>
-                <button class="pager-btn circle" id="nextPage" aria-label="Next">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
+            <div class="cafe-grid search-grid" id="searchResults"></div>
         </section>
     </main>
 

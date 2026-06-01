@@ -18,6 +18,15 @@ export const getById = async (req, res) => {
     }
 };
 
+export const getImages = async (req, res) => {
+    try {
+        const data = await service.getImages(req.params.id);
+        res.json(data);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
 export const create = async (req, res) => {
     try {
         const data = await service.create(req.body);
@@ -33,6 +42,15 @@ export const update = async (req, res) => {
     res.json(data);
   } catch (err) {
     res.status(400).json(err);
+  }
+};
+
+export const replaceImages = async (req, res) => {
+  try {
+    const data = await service.replaceImages(req.params.id, req.body);
+    res.json(data);
+  } catch (err) {
+    res.status(err.status || 400).json(err);
   }
 };
 

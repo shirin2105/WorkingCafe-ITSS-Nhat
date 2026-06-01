@@ -5,14 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Working Cafe - Map</title>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="map-body">
-    <!-- Header Area (Reused) -->
     <header class="detail-header">
         <div class="header-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
             <img src="WorkingCafe-Logo.png" alt="Logo" class="header-logo-img">
@@ -29,9 +27,7 @@
         </div>
     </header>
 
-    <!-- Map Main Layout -->
     <main class="map-main-layout">
-        <!-- Sidebar -->
         <aside class="map-sidebar">
             <img src="https://placehold.co/400x300/333/fff?text=Placeholder:\nCafe+Interior" alt="Cafe Image"
                 class="sidebar-img" id="mapCafeImage">
@@ -57,11 +53,26 @@
                     </div>
                     <i class="fa-solid fa-pen-to-square edit-icon sidebar-edit" id="mapCafeEdit"></i>
                 </div>
+
+                <p class="map-location-hint hidden" id="mapLocationHint"></p>
+
+                <div class="map-sidebar-actions">
+                    <a href="#" id="mapViewDetailBtn" class="map-sidebar-btn hidden"></a>
+                    <button type="button" id="mapSetLocationBtn" class="map-sidebar-btn hidden"></button>
+                </div>
             </div>
         </aside>
 
-        <!-- Map Area -->
         <div class="map-area">
+            <div class="map-search-panel hidden" id="mapSearchPanel">
+                <div class="map-search-row">
+                    <i class="fa-solid fa-magnifying-glass map-search-icon"></i>
+                    <input type="text" id="mapLocationSearch" class="map-search-input"
+                        placeholder="Tìm địa chỉ tại Việt Nam..." autocomplete="off">
+                    <button type="button" id="mapLocationSearchBtn" class="map-search-btn">Tìm</button>
+                </div>
+                <ul id="mapSearchResults" class="map-search-results hidden" role="listbox"></ul>
+            </div>
             <div id="mapFrame" class="map-frame"></div>
         </div>
     </main>

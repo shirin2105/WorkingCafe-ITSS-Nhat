@@ -1,6 +1,7 @@
 import { supabase } from '../../config/db.js';
 
 const TABLE = "cafes";
+const IMAGE_TABLE = "cafe_images";
 
 export const findAll = async (query) => {
     const keyword = typeof query?.keyword === "string" ? query.keyword.trim() : "";
@@ -51,6 +52,14 @@ export const findById = async (id) => {
         .single();
 };
 
+export const findImagesByCafeId = async (cafeId) => {
+    return await supabase
+        .from(IMAGE_TABLE)
+        .select()
+        .eq("cafe_id", Number(cafeId))
+        .order("id", { ascending: true });
+};
+
 export const create = async (payload) => {
     return await supabase.from(TABLE).insert(payload).select();
 };
@@ -60,6 +69,30 @@ export const update = async (id, payload) => {
         .from(TABLE)
         .update(payload)
         .eq("id", Number(id))
+        .select();
+};
+
+export const replaceImages = async (cafeId, imageUrls) => {
+    const normalizedCafeId = Number(cafeId);
+    const { error: deleteError } = await supabase
+        .from(IMAGE_TABLE)
+        .delete()
+        .eq("cafe_id", normalizedCafeId);
+
+    if (deleteError) {
+        return { data: null, error: deleteError };
+    }
+
+    if (imageUrls.length === 0) {
+        return { data: [], error: null };
+    }
+
+    return await supabase
+        .from(IMAGE_TABLE)
+        .insert(imageUrls.map((imageUrl) => ({
+            cafe_id: normalizedCafeId,
+            image_url: imageUrl
+        })))
         .select();
 };
 
