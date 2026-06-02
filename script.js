@@ -509,12 +509,14 @@ const openModal = ({ title, fields = [], submitText = '保存', cancelText = '�
 };
 
 const openConfirmModal = async (title, message) => {
-    const result = await openModal({ title, message, submitText: 'OK', cancelText: 'Hủy' });
+    const dict = getLocaleText();
+    const result = await openModal({ title, message, submitText: dict.modalOk || 'OK', cancelText: dict.modalCancel || 'Hủy' });
     return result !== null;
 };
 
 const openAlertModal = async (title, message) => {
-    await openModal({ title, message, submitText: 'OK', cancelText: 'Đóng' });
+    const dict = getLocaleText();
+    await openModal({ title, message, submitText: dict.modalOk || 'OK', cancelText: dict.modalClose || 'Đóng' });
 };
 
 const MAX_CAFE_IMAGES = 10;
@@ -952,7 +954,13 @@ const getLocaleText = () => {
             bookingTime: 'Giờ đến',
             bookingPeople: 'Số người',
             bookingNote: 'Yêu cầu khác',
+            bookingDatePlaceholder: 'Chọn ngày đặt chỗ',
+            bookingTimePlaceholder: 'Chọn giờ đến',
+            bookingPeoplePlaceholder: 'Nhập số người',
+            bookingNotePlaceholder: 'Nhập yêu cầu thêm nếu có...',
             bookingSubmit: 'Gửi',
+            bookingSuccessTitle: 'Thành công',
+            bookingSuccessMessage: 'Đã gửi yêu cầu đặt chỗ thành công',
             bookingFeatures: 'Tiện ích',
             featureSmoking: 'Khu vực hút thuốc',
             featureOutlet: 'Ổ cắm',
@@ -964,6 +972,12 @@ const getLocaleText = () => {
             notificationApprove: 'Chấp nhận',
             notificationReject: 'Từ chối',
             notificationBack: 'Quay lại',
+            notificationAccepted: 'Đã chấp nhận',
+            notificationRejected: 'Đã từ chối',
+            notificationPeopleUnit: 'người',
+            modalOk: 'OK',
+            modalClose: 'Đóng',
+            modalCancel: 'Hủy',
             profileTitle: 'Hồ sơ',
             homeLoading: 'Đang tải quán...',
             homeEmpty: 'Không có quán nào để hiển thị.',
@@ -1046,7 +1060,13 @@ const getLocaleText = () => {
             bookingTime: '来店時間',
             bookingPeople: '人数',
             bookingNote: 'その他ご要望',
+            bookingDatePlaceholder: '予約日を選択',
+            bookingTimePlaceholder: '来店時間を選択',
+            bookingPeoplePlaceholder: '人数を入力',
+            bookingNotePlaceholder: 'ご要望があれば入力してください...',
             bookingSubmit: '送信',
+            bookingSuccessTitle: '成功',
+            bookingSuccessMessage: '予約リクエストを送信しました',
             bookingFeatures: '設備・サービス',
             featureSmoking: '喫煙席',
             featureOutlet: 'コンセント',
@@ -1058,6 +1078,12 @@ const getLocaleText = () => {
             notificationApprove: '承認',
             notificationReject: '拒否',
             notificationBack: '戻る',
+            notificationAccepted: '承認済み',
+            notificationRejected: '拒否済み',
+            notificationPeopleUnit: '人',
+            modalOk: 'OK',
+            modalClose: '閉じる',
+            modalCancel: 'キャンセル',
             profileTitle: 'プロフィール',
             homeLoading: '読み込み中...',
             homeEmpty: '表示できる店舗がありません。',
@@ -1185,12 +1211,16 @@ const applyLanguage = () => {
 
     if (document.body.classList.contains('booking-body')) {
         document.title = `Working Cafe - ${dict.titleBooking}`;
-        const title = document.querySelector('.booking-main .section-title');
+        const title = document.getElementById('bookingTitle');
         if (title) title.textContent = dict.bookingTitle;
         const dateLabel = document.getElementById('bookingDateLabel');
         const timeLabel = document.getElementById('bookingTimeLabel');
         const peopleLabel = document.getElementById('bookingPeopleLabel');
         const noteLabel = document.getElementById('bookingNoteLabel');
+        const dateInput = document.getElementById('bookingDate');
+        const timeInput = document.getElementById('bookingTime');
+        const peopleInput = document.getElementById('bookingPeople');
+        const noteInput = document.getElementById('bookingNote');
         const featuresTitle = document.getElementById('bookingFeaturesTitle');
         const smokingLabel = document.getElementById('featureSmokingLabel');
         const outletLabel = document.getElementById('featureOutletLabel');
@@ -1201,6 +1231,13 @@ const applyLanguage = () => {
         if (timeLabel) timeLabel.textContent = dict.bookingTime;
         if (peopleLabel) peopleLabel.textContent = dict.bookingPeople;
         if (noteLabel) noteLabel.textContent = dict.bookingNote;
+        if (dateInput) dateInput.placeholder = dict.bookingDatePlaceholder;
+        if (timeInput) {
+            const emptyOption = timeInput.querySelector('option[value=""]');
+            if (emptyOption) emptyOption.textContent = dict.bookingTimePlaceholder;
+        }
+        if (peopleInput) peopleInput.placeholder = dict.bookingPeoplePlaceholder;
+        if (noteInput) noteInput.placeholder = dict.bookingNotePlaceholder;
         if (featuresTitle) featuresTitle.textContent = dict.bookingFeatures;
         if (smokingLabel) smokingLabel.textContent = dict.featureSmoking;
         if (outletLabel) outletLabel.textContent = dict.featureOutlet;
@@ -1331,7 +1368,16 @@ const loadNotifications = async (container) => {
     const userId = localStorage.getItem('userId');
     if (!userId || !container) return;
     const response = await apiClient.get(`/notifications?user_id=${userId}`);
-    const notifications = response.success ? response.data : [];
+    const notifications = response.success && Array.isArray(response.data)
+        ? response.data
+            .sort((a, b) => {
+                const aTime = new Date(a.created_at || 0).getTime();
+                const bTime = new Date(b.created_at || 0).getTime();
+                if (aTime !== bTime) return bTime - aTime;
+                return Number(b.id || 0) - Number(a.id || 0);
+            })
+            .slice(0, 5)
+        : [];
     await updateNotificationBadge();
     if (notifications.length === 0) {
         container.innerHTML = `<p class="dropdown-empty">${dict.notificationEmpty}</p>`;
@@ -1360,8 +1406,8 @@ const loadNotifications = async (container) => {
         return booking?.status && !isProcessedStatus(booking.status);
     }).length;
     const getStatusText = (status) => {
-        if (status === 'approved') return 'Đã chấp nhận';
-        if (status === 'cancelled') return 'Đã từ chối';
+        if (status === 'approved') return dict.notificationAccepted;
+        if (status === 'cancelled') return dict.notificationRejected;
         return '';
     };
     await updateNotificationBadge(getPendingCount());
@@ -1375,7 +1421,7 @@ const loadNotifications = async (container) => {
                 const processedClass = isProcessedStatus(booking?.status) ? ' is-processed' : '';
                 const showActions = role === 'owner' && bookingId && booking?.status && !isProcessedStatus(booking.status);
                 const bookingText = booking
-                    ? `Booking #${booking.id} - ${booking.booking_date} ${booking.booking_time}<br>- ${booking.number_of_people || 1} người`
+                    ? `Booking #${booking.id} - ${booking.booking_date} ${booking.booking_time}<br>- ${booking.number_of_people || 1} ${dict.notificationPeopleUnit}`
                     : item.content;
                 return `
                     <div class="notification-item${processedClass}" data-id="${item.id}" data-booking-id="${bookingId || ''}">
@@ -3124,6 +3170,7 @@ async function initBookingPage() {
     const cafeId = getQueryParam('cafe_id');
 
     buildTimeOptions(bookingTime);
+    applyLanguage();
 
     if (cafeId && bookingCafeImage) {
         const cafeResponse = await apiClient.get(`/cafes/${cafeId}`);
@@ -3167,7 +3214,8 @@ async function initBookingPage() {
             }
             const response = await apiClient.post('/bookings', payload);
             if (response.success) {
-                await openAlertModal('Thành công', 'Đã gửi yêu cầu đặt chỗ thành công');
+                const dict = getLocaleText();
+                await openAlertModal(dict.bookingSuccessTitle, dict.bookingSuccessMessage);
                 bookingForm.reset();
             } else {
                 await openAlertModal('Lỗi', response.error || 'Không thể gửi yêu cầu đặt chỗ.');
